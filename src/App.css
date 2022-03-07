@@ -1,0 +1,40 @@
+.background{
+    width: 100vw; height: 100vh;
+    background-image: linear-gradient(to right top, #008996, #009794, #00a385, #00ad6a, #33b544);
+}
+
+.font-mono{
+    font-family: 'Ubuntu Mono', monospace;
+}
+.font-cursive{
+    font-family: 'Dancing Script', cursive;
+}
+
+button{
+    margin: 4%;
+    padding: 2%;
+    font-weight: 600;
+    font-size: 100%;
+    border: none;
+    border-radius: 3px;
+    border-style: none;
+    background-color: #78ffc2;
+    box-shadow: 2px 2px 3px black;
+    transition: all 200ms;
+}
+button:hover{
+    background-color: #78ff95;
+    transform: scale(1.1);
+}
+button:active{
+    background-color: #78ffe4;
+    transform: scale(.9);
+}
+
+.link{
+    color: black;
+    cursor: pointer;
+}
+.link:hover{
+    color: lightseagreen;
+}

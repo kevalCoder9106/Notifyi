@@ -38,8 +38,8 @@ const Register = (props) => {
                 .then(resp => resp.json())
                 .then(result => {
                     console.log(result)
-                    if (result == 'Success'){
-                        alert('user added successfully')
+                    if (result === 'Success'){
+                        props.updateRoute(3)
                     }
                     else{
                         throw Error
@@ -74,7 +74,7 @@ const Register = (props) => {
                 </div>
                 <button className='font-mono' onClick={onRegister}>Register</button>
                 <div className='links'>
-                    <h4><a className='link font-mono' onClick={() => props.updateRoute(0)}>Back to login</a></h4>
+                    <h4><a href='#0' className='link font-mono' onClick={() => props.updateRoute(0)}>Back to login</a></h4>
                 </div>
             </div>
         </div>

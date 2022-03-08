@@ -17,7 +17,7 @@ const Login = (props) => {
         .then(resp => resp.json())
         .then(result => {
             if (result === "Success"){
-                alert("Successfully logged in")
+                props.updateRoute(3)
             }
             else{
                 throw Error;
@@ -37,8 +37,8 @@ const Login = (props) => {
                 </div>
                 <button className='font-mono' onClick={onLogin}>Login</button>
                 <div className='links'>
-                    <h4><a className='link font-mono' onClick={() => props.updateRoute(2)}>Forgot password ?</a></h4>
-                    <h4><a className='link font-mono' onClick={() => props.updateRoute(1)}>Create account</a></h4>
+                    <h4><a href='#0' className='link font-mono' onClick={() => props.updateRoute(2)}>Forgot password ?</a></h4>
+                    <h4><a href='#0' className='link font-mono' onClick={() => props.updateRoute(1)}>Create account</a></h4>
                 </div>
             </div>
 

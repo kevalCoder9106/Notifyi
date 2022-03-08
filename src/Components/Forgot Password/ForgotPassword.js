@@ -57,7 +57,7 @@ const ForgotPassword = (props) => {
                 .then(result => {
                     if (result === "Success"){
                         // Goto login screen
-                        alert("Password changed successfully!")
+                        props.updateRoute(0)
                     }
                     else{
                         throw Error
@@ -94,7 +94,7 @@ const ForgotPassword = (props) => {
                 </div>
                 <button className='font-mono' onClick={changePassword}>Change Password</button>
                 <div className='links'>
-                    <h4><a className='link font-mono' onClick={() => props.updateRoute(0)}>Back to login</a></h4>
+                    <h4><a href='#0' className='link font-mono' onClick={() => props.updateRoute(0)}>Back to login</a></h4>
                 </div>
             </div>
         </div>

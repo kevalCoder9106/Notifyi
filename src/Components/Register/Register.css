@@ -41,6 +41,8 @@
     font-size: 100%;
 }
 .register-container-box > button{
+    margin: 4%;
+    padding: 2%;
     width: 30%;
     height: 6%;
 }

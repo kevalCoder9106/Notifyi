@@ -53,6 +53,8 @@
 }
 
 .login-container-box > button{
+    margin: 4%;
+    padding: 2%;
     width: 20%;
     height: 6%;
 }

@@ -24,29 +24,11 @@ const Register = (props) => {
         }
     }
 
-    const onRegister = () => {
-     
+    const sub_onRegister = () => {
         if (isEmailValid){
             if (otp === generatedOtp){
-                const userData = {username:username,email:email,password:password}
-                // !!!!!!!!!!!!!!!!!!!!! register user !!!!!!!!!!!!!!!!! //
-                fetch('http://localhost:300/register',{
-                    method: 'post',
-                    headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify(userData)
-                })
-                .then(resp => resp.json())
-                .then(result => {
-                    console.log(result)
-                    if (result === 'Success'){
-                        props.updateRoute(3)
-                    }
-                    else{
-                        throw Error
-                    }
-                })
-                .catch(err => alert('Error registering user'))
-            }
+              props.onRegister(username,email,password)
+          }
         }
     }
 
@@ -72,7 +54,7 @@ const Register = (props) => {
                             console.log('email isnt validated')
                     }
                 </div>
-                <button className='font-mono' onClick={onRegister}>Register</button>
+                <button className='font-mono' onClick={sub_onRegister}>Register</button>
                 <div className='links'>
                     <h4><a href='#0' className='link font-mono' onClick={() => props.updateRoute(0)}>Back to login</a></h4>
                 </div>

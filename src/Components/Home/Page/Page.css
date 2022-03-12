@@ -1,0 +1,76 @@
+.page-container{
+    margin-top: 15px;
+    width: 60%;
+    height: 80%;
+    background-color: #78ffc2;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.note-methods-container{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.note-methods-container > img{
+    margin: 5px;
+    width: 24px;
+    transition: all 200ms;
+}
+
+.page-container > textarea{
+    margin-top: 25px;
+    padding: 20px;
+    width: 60%;
+    height: 80%;
+    background-color: #6ecabb;;
+    border: none;
+    border-style: none;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 5px black;
+}
+
+.page-container > .bottom-area{
+    margin: 5px;
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+}
+.page-container > .bottom-area > .neg{
+    margin: 5px;
+    padding: 1%;
+    background-color: #ff6666;
+}
+.page-container > .bottom-area > .pos{
+    margin: 5px;
+    padding: 1%;
+    background-color: #9cca6e;
+}
+
+.note-methods-container > img:hover{
+    transform: scale(1.1);
+}
+.note-methods-container > img:active{
+    transform: scale(0.9);
+}
+
+@media screen and (max-width: 1920px) {
+    .page-container > textarea { font-size: 1vw;}
+}
+@media screen and (max-width: 1400px) {
+    .page-container > textarea { font-size: 2vw;}
+}
+@media screen and (max-width: 700px) {
+    .page-container { width: 80%;}
+    .page-container > textarea { font-size: 3vw;}
+}
+@media screen and (max-width: 400px) {
+    .page-container { width: 80%;}
+    .page-container > textarea { font-size: 4vw;}
+}

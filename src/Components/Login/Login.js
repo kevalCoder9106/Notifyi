@@ -5,27 +5,6 @@ const Login = (props) => {
     const [username,setUsername] = useState("")
     const [password,setPassword] = useState("")
 
-    const onLogin = () => {
-        // !!!!!!!!!!!!!!!!!!!! Login here !!!!!!!!!!!!!!!!!!!!!!!!!
-        const userData = {username:username,password:password}
-
-        fetch('http://localhost:300/login', {
-            method: 'post',
-            headers: {'Content-Type':'application/json'},
-            body:JSON.stringify(userData)
-        })
-        .then(resp => resp.json())
-        .then(result => {
-            if (result === "Success"){
-                props.updateRoute(3)
-            }
-            else{
-                throw Error;
-            }
-        })
-        .catch(err => alert('Error loging in...'))
-    }
-
     return(
         <div className="login-container background">
             <h1 className='font-cursive'>Notifyi</h1>
@@ -35,7 +14,7 @@ const Login = (props) => {
                     <input type='text' placeholder='Username' className='font-mono' onChange={e => setUsername(e.target.value)}></input>
                     <input type='password' placeholder='Password' className='font-mono' onChange={e => setPassword(e.target.value)}></input>
                 </div>
-                <button className='font-mono' onClick={onLogin}>Login</button>
+                <button className='font-mono' onClick={() => props.onLogin(username,password,true)}>Login</button>
                 <div className='links'>
                     <h4><a href='#0' className='link font-mono' onClick={() => props.updateRoute(2)}>Forgot password ?</a></h4>
                     <h4><a href='#0' className='link font-mono' onClick={() => props.updateRoute(1)}>Create account</a></h4>

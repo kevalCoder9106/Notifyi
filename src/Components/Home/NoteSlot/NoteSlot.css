@@ -1,0 +1,19 @@
+.noteslot-container{
+    width: 95%; height: 95%;
+    background-image: linear-gradient(to right top, #71daff, #4de6fc, #36f0ef, #4af9d9, #74ffbc);
+    border-radius: 4px;
+    transition: all 100ms linear;
+    cursor: pointer;
+}
+.noteslot-container:hover{
+    transform: scale(1.02);
+    background-image: linear-gradient(to right top, #71ffd3, #68ffc3, #66ffaf, #6aff99, #74ff80);
+}
+.noteslot-container:active{
+    transform: scale(0.98);
+}
+
+.noteslot-container > *{
+    padding-left: 10px;
+    padding-top: 15px;
+}

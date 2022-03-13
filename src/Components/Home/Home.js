@@ -10,15 +10,7 @@ const Home = (props) => {
     const [id,updateID] = useState(0)
     const [title,updateTitle] = useState('')
     const [desc,updateDesc] = useState('')
-
-    // note list
-    const [notes,addNote] = useState([])
-
-    const _addNote = (noteData) => {
-        addNote((prevNote) => {
-            return [...prevNote,noteData]
-        })
-    }
+    const [sub_desc,updateSubDesc] = useState('')
 
     const onCreateNote = () => {
         if (title !== '' || title !== ' '){
@@ -28,33 +20,22 @@ const Home = (props) => {
                 desc: desc,
                 sub_desc: desc.substring(0,(desc.length <= 5 ? 5 : desc.length / 2))
             }
-
-            _addNote(newNote)
+            
+            props.addNote(newNote.id,newNote.title,newNote.desc,newNote.sub_desc)
             setCreatingNote(false)
-        }
-    }  
-
-    const onCommitNote = () => {
-        let noteFound = false
-        notes.map(note => {
-            console.log(note)
-            if (note.id === id){
-                note.title = title
-                note.desc = desc
-                noteFound = true
-            }
-        })
-
-        if (!noteFound){
-            onCreateNote()
         }
     }
 
-    const onModifyingNote = (id,title,desc) => {
+    const sub_onCommitNote = () => {
+        props.onCommitNote(id,title,desc,sub_desc)
+    }
+
+    const onModifyingNote = (id,title,desc,sub_desc) => {
         document.getElementById('title_tbox').value = title
         updateID(id)
         updateTitle(title)
         updateDesc(desc)
+        updateSubDesc(sub_desc)
         setCreatingNote(true)
     }
 
@@ -72,14 +53,14 @@ const Home = (props) => {
                 // if user is going to create new note then instantiate page
                 isCreatingNote === true
                 ?
-                    <Page setCreatingNote={setCreatingNote} title={title} desc={desc} updateDesc={updateDesc} onCommitNote={onCommitNote}/>
+                    <Page setCreatingNote={setCreatingNote} title={title} desc={desc} updateDesc={updateDesc} updateSubDesc={updateSubDesc} onCommitNote={sub_onCommitNote}/>
                 :
                     <div className='note-container'>
                         {/* <NoteSlot id={note_data[0].id} title={note_data[0].title} desc={note_data[0].desc}/> */}
                         {
-                            notes.length > 0
+                            props.notes.length > 0
                             ?
-                                notes.map(d =>  <NoteSlot id={d.id} title={d.title} desc={d.desc} sub_desc={d.sub_desc} onModifyingNote={onModifyingNote}/> )
+                                props.notes.map(d =>  <NoteSlot id={d.id} title={d.title} desc={d.desc} sub_desc={d.sub_desc} onModifyingNote={onModifyingNote}/> )
                             :
                                 console.log()
                         }

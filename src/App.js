@@ -24,6 +24,9 @@ const App = () => {
     isUserLoggedIn()
   })
 
+  // note list
+  const [notes,addNote] = useState([])
+
   // routes
   const onLogin = (p_username,p_password,show_alert) => {
     // !!!!!!!!!!!!!!!!!!!! Login here !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -38,6 +41,7 @@ const App = () => {
     .then(result => {
         if (result === "Success"){
             setUserCreds(userData.username,userData.password)
+            refreshNotes()
             updateRoute(3)
         }
         else{
@@ -73,6 +77,45 @@ const App = () => {
     .catch(err => alert('Error registering user'))
   }
 
+  const onAddNote = (id,title,desc,sub_desc) => {
+    const noteData = {id:id,title:title,desc:desc,sub_desc:sub_desc}
+
+    fetch('http://localhost:300/addnote',{
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(noteData)
+    })
+    .then(resp => resp.json())
+    .then(result => addNote(result))
+    .catch(err => {
+      alert('Error adding note')
+    })
+  }
+
+  const onCommitNote = (id,title,desc,sub_desc) => {
+    const noteData = {id:id,title:title,desc:desc,sub_desc:sub_desc}
+    console.log(noteData)
+
+    fetch('http://localhost:300/commitnote',{
+      method:'put',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(noteData)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      addNote(result)
+    })
+    .catch(err => {
+      alert(err)
+    })
+  }
+
+  const refreshNotes = () => {
+    fetch('http://localhost:300/getnotes')
+    .then(resp => resp.json())
+    .then(result => addNote(result))
+    .catch(err => alert(err))
+  }
 
   // session setup
   const getUserCreds = () => {
@@ -108,7 +151,7 @@ const App = () => {
         :
           route === 3
         ?
-          <Home resetUserCreds={resetUserCreds}/>
+          <Home resetUserCreds={resetUserCreds} notes={notes} addNote={onAddNote} onCommitNote={onCommitNote}/>
         :
           console.log("error please reload the page") // home page
       }
